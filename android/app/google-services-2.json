@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "296562921261",
+    "project_id": "fmd-app-70379",
+    "storage_bucket": "fmd-app-70379.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296562921261:android:14d328c447041019744da4",
+        "android_client_info": {
+          "package_name": "com.example.fmd_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296562921261-ib7l4vll40h7ouaknfu3v9s4t0sfflok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaTfeQhQVIcwKka0FN2JHYr-f_sJbN_tE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296562921261-ib7l4vll40h7ouaknfu3v9s4t0sfflok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
