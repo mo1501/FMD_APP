@@ -1,8 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fmd_app/screens/register.dart';
+import 'package:fmd_app/screens/auth_screen.dart';
+import 'package:fmd_app/screens/homescreen.dart';
+import './screens/auth_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'package:firebase_core/firebase_core.dart';
+
+// void main()  {
+
+//   runApp(MyApp());
+// }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,8 +38,15 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Register(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (ctx, userSnapshot) {
+          if (userSnapshot.hasData) {
+            return HomeScreen();
+          }
+          return AuthScreen();
+        },
+      ),
     );
   }
 }
-
