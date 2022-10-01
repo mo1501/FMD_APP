@@ -5,9 +5,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:fmd_app/widgets/auth_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
+
+  
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -38,7 +41,9 @@ class _AuthScreenState extends State<AuthScreen> {
           'username': username,
           'email': email,
         });
+        
       }
+      
     } on PlatformException catch (err) {
       var message = 'An error occurred, please check your credentials';
 
@@ -58,6 +63,7 @@ class _AuthScreenState extends State<AuthScreen> {
     setState(() {
       _isLoading = false;
     });
+    
   }
 
   @override

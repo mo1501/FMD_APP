@@ -1,6 +1,7 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import '../screens/forgot_password_screen.dart';
 
 class AuthForm extends StatefulWidget {
   AuthForm(this.submitFn, this._isLoading);
@@ -119,7 +120,19 @@ class _AuthFormState extends State<AuthForm> {
                           _isLogin = !_isLogin;
                         });
                       },
-                    )
+                    ),
+                    FlatButton(
+                    onPressed: () {
+                    Navigator.pushNamed(
+                    context,
+                    ForgotPassword.id,
+                    );
+                      },                      
+                      child: Text(
+                      'Forgot Password?',
+                       style: TextStyle(color: Colors.grey, fontSize: 12),
+                         ),
+                      ),
                 ],
               ),
             ),
