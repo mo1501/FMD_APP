@@ -51,5 +51,7 @@
 	<string>Access to camera required</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Access to microphone required</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open.</string>
 </dict>
 </plist>

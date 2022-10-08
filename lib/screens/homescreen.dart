@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:fmd_app/screens/forgot_password_screen.dart';
+import 'package:fmd_app/screens/maps_screen.dart';
 import 'auth_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:image_picker/image_picker.dart';
@@ -256,7 +257,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: CircularMenuItem(
                       icon: Icons.map_outlined,
                       color: Theme.of(context).primaryColor,
-                      onTap: () {},
+                      onTap: (){
+                        Navigator.push(
+                        context,MaterialPageRoute(builder: (context) => MapsScreen(), //here pass the actual values of these variables, for example false if the payment isn't successfull..etc
+                        ),);
+                        } ,
                     ),
                   ),
                 ],
