@@ -9,28 +9,17 @@ import '../services/geolocator_service.dart';
 import '../blocks/application_block.dart';
 
 class MapsScreen extends StatefulWidget {
-  late LocationPermission _permission;
-
   @override
   State<MapsScreen> createState() => _MapsScreenState();
 }
 
 class _MapsScreenState extends State<MapsScreen> {
   @override
-  void initState() {
-    final applicationBloc =
-        Provider.of<ApplicationBloc>(context, listen: false);
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final applicationBloc = Provider.of<ApplicationBloc>(context);
-    
 
     return Scaffold(
-      body: (applicationBloc.currentLocation == null )
+      body: (applicationBloc.currentLocation == null)
           ? Center(
               child: CircularProgressIndicator(),
             )
@@ -84,6 +73,8 @@ class _MapsScreenState extends State<MapsScreen> {
                 ],
               ),
             ]),
+
+      
     );
   }
 }

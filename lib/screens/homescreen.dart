@@ -258,9 +258,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.map_outlined,
                       color: Theme.of(context).primaryColor,
                       onTap: (){
-                        Navigator.push(
-                        context,MaterialPageRoute(builder: (context) => MapsScreen(), //here pass the actual values of these variables, for example false if the payment isn't successfull..etc
-                        ),);
+                        Navigator.pushReplacement(
+                        context,MaterialPageRoute(builder: (context) => MapsScreen(), ),);
                         } ,
                     ),
                   ),
