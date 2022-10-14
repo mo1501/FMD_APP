@@ -17,64 +17,76 @@ class _MapsScreenState extends State<MapsScreen> {
   @override
   Widget build(BuildContext context) {
     final applicationBloc = Provider.of<ApplicationBloc>(context);
+    final applicationBlocResult = applicationBloc.currentLocation;
 
     return Scaffold(
+      // body: FutureBuilder(
+      //     future: applicationBlocResult as Future,
+      //     builder: (context, snapshot) {
+      //       if (snapshot.connectionState == ConnectionState.waiting) {
+      //         return CircularProgressIndicator();
+      //       } else if (snapshot.hasError) {
+      //         return Text(" An Error has occured ");
+      //       } else if (snapshot.hasData) {
+      //         return
       body: (applicationBloc.currentLocation == null)
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : ListView(children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search Location',
-                    suffixIcon: Icon(Icons.search),
+          : ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search Location',
+                      suffixIcon: Icon(Icons.search),
+                    ),
+                    onChanged: (value) => applicationBloc.searchPlaces(value),
                   ),
-                  onChanged: (value) => applicationBloc.searchPlaces(value),
                 ),
-              ),
-              Stack(
-                children: [
-                  Container(
-                    height: 630.0,
-                    child: GoogleMap(
-                      mapType: MapType.normal,
-                      initialCameraPosition: CameraPosition(
-                        target: LatLng(applicationBloc.currentLocation.latitude,
-                            applicationBloc.currentLocation.longitude),
-                        zoom: 14,
+                Stack(
+                  children: [
+                    Container(
+                      height: 630.0,
+                      child: GoogleMap(
+                        mapType: MapType.normal,
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng( 45.521563, -122.677433
+                              //applicationBloc.currentLocation.latitude,
+                              //applicationBloc.currentLocation.longitude
+                              ),
+                          zoom: 14,
+                        ),
+                        myLocationEnabled: true,
                       ),
-                      myLocationEnabled: true,
                     ),
-                  ),
-                  Container(
-                    height: 300,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(.2),
-                      backgroundBlendMode: BlendMode.darken,
+                    Container(
+                      height: 300,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(.2),
+                        backgroundBlendMode: BlendMode.darken,
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 300,
-                    child: ListView.builder(
-                      itemCount: applicationBloc.searchResults.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(
-                            applicationBloc.searchResults[index].description,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        );
-                      },
+                    Container(
+                      height: 300,
+                      child: ListView.builder(
+                        itemCount: applicationBloc.searchResults.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(
+                              applicationBloc.searchResults[index].description,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ]),
-
-      
+                  ],
+                ),
+              ],
+            ),
     );
   }
 }

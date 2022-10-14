@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:fmd_app/screens/forgot_password_screen.dart';
 import 'package:fmd_app/screens/maps_screen.dart';
+import 'package:fmd_app/screens/maps_screen2.dart';
 import 'auth_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:image_picker/image_picker.dart';
@@ -259,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Theme.of(context).primaryColor,
                       onTap: (){
                         Navigator.pushReplacement(
-                        context,MaterialPageRoute(builder: (context) => MapsScreen(), ),);
+                        context,MaterialPageRoute(builder: (context) => MapSample(), ),);
                         } ,
                     ),
                   ),

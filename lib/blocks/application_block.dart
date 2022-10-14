@@ -8,8 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../services/places_service.dart';
 
 class ApplicationBloc with ChangeNotifier {
-  final geolocatorService = GeolocatorService();
-  final lastKnownlocation = Geolocator();
+  final geoLocatorService = GeolocatorService();
   final placesService = PlacesService();
   //variables
   late Position currentLocation;
@@ -38,7 +37,7 @@ class ApplicationBloc with ChangeNotifier {
   //   notifyListeners();
   // }
   setCurrentLocation() async {
-    currentLocation = await geolocatorService.getCurrentLocation();
+    currentLocation = await geoLocatorService.getCurrentLocation();
 
     notifyListeners();
   }

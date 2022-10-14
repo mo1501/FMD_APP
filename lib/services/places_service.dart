@@ -4,7 +4,7 @@ import 'dart:convert' as convert;
 
 class PlacesService {
   Future<List<PlaceSearch>> getAutoComplete(String search) async {
-    final key = 'AIzaSyA51RJ9xuTmgvU_bqHxdz36npyeSbfmTeo';
+    final key = 'AIzaSyDry6ppn5WEa6UnecP-UAmHjtK2KCZ0Y8I';
     var url =
         'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$search&types=(cities)&key=$key';
     var response = await http.get(Uri.parse(url));
