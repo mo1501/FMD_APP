@@ -105,14 +105,14 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   if (widget._isLoading) CircularProgressIndicator(),
                   if (!widget._isLoading)
-                    RaisedButton(
+                    ElevatedButton(
                       child: Text(_isLogin ? 'Login' : 'Create a new account'),
                       onPressed: _trySubmit,
                     ),
                   if (widget._isLoading) CircularProgressIndicator(),
                   if (!widget._isLoading)
-                    FlatButton(
-                      textColor: Theme.of(context).primaryColor,
+                    TextButton(
+                      
                       child: Text(
                           _isLogin ? 'Create a new account' : 'Login instead'),
                       onPressed: () {
@@ -121,7 +121,7 @@ class _AuthFormState extends State<AuthForm> {
                         });
                       },
                     ),
-                    FlatButton(
+                    TextButton(
                     onPressed: () {
                     Navigator.pushNamed(
                     context,

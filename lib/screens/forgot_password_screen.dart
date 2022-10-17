@@ -79,15 +79,15 @@ class ForgotPassword extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                RaisedButton(
-                  color: Colors.white,
+                ElevatedButton(
                   child: Text('Send Email'),
+                  
                   onPressed: () {
                     resetPassword();
                   },
                 ),
-                FlatButton(
-                  color: Colors.white,
+                ElevatedButton(
+                  
                   child: Text('Sign In'),
                   onPressed: () {
                     Navigator.push(
