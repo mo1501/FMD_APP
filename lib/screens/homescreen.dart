@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void getModel() async {
     var res = await Tflite.loadModel(
       model: 'assets/model_unquant.tflite',
-      labels: 'labels.txt',
+      labels: 'assets/labels.txt',
       numThreads: 1,
       isAsset: true,
       useGpuDelegate: false,
