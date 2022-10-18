@@ -13,6 +13,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:flutter_tflite/flutter_tflite.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen();
 
@@ -23,7 +25,47 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var _username;
   late File _pickedImage;
-  late File _pickedImage2;
+  bool _loading = true;
+  late List _output;
+  //late File _pickedImage2;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getModel();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    Tflite.close();
+  }
+
+  void getModel() async {
+    var res = await Tflite.loadModel(
+      model: 'assets/model_unquant.tflite',
+      labels: 'labels.txt',
+      numThreads: 1,
+      isAsset: true,
+      useGpuDelegate: false,
+    );
+  }
+
+  classifyImage(File image) async {
+    var output = await Tflite.runModelOnImage(
+      path: image.path,
+      numResults: 5,
+      threshold: 0.5,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
+    setState(() {
+      _output = output!;
+      _loading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _pickedImage = File(pickedImageFile.path);
         }
       });
+      classifyImage(_pickedImage);
       if (_pickedImage != null) {
         showModalBottomSheet(
             context: context,
@@ -72,18 +115,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        child: Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 80,
-                          backgroundImage: _pickedImage != null
-                              ? FileImage(_pickedImage)
-                              : null,
-                        ),
-                        Text('This is an image'),
-                      ],
-                    ),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            radius: 80,
+                            backgroundImage: _pickedImage != null
+                                ? FileImage(_pickedImage)
+                                : null,
+                          ),
+                          Text('The animal is ${_output[0]['label']}'),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -96,14 +139,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
     void _pickImageGallery() async {
       final imagePicker = ImagePicker();
-      final pickedImageFile2 =
+      final pickedImageFile =
           await imagePicker.getImage(source: ImageSource.gallery);
       setState(() {
-        if (pickedImageFile2 != null) {
-          _pickedImage2 = File(pickedImageFile2.path);
+        if (pickedImageFile != null) {
+          _pickedImage = File(pickedImageFile.path);
         }
       });
-      if (_pickedImage2 != null) {
+      classifyImage(_pickedImage);
+      if (_pickedImage != null) {
         showModalBottomSheet(
             context: context,
             builder: (context) {
@@ -114,10 +158,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundColor: Colors.grey,
                     radius: 80,
                     backgroundImage:
-                        _pickedImage2 != null ? FileImage(_pickedImage2) : null,
+                        _pickedImage != null ? FileImage(_pickedImage) : null,
                   ),
                   Center(
-                    child: Text('This is an image'),
+                    child: Text('The animal is ${_output[0]['label']}'),
                   ),
                 ],
               );
@@ -258,10 +302,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: CircularMenuItem(
                       icon: Icons.map_outlined,
                       color: Theme.of(context).primaryColor,
-                      onTap: (){
+                      onTap: () {
                         Navigator.pushReplacement(
-                        context,MaterialPageRoute(builder: (context) => MapSample(), ),);
-                        } ,
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MapSample(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
