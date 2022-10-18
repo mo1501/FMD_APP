@@ -26,14 +26,16 @@ class _HomeScreenState extends State<HomeScreen> {
   var _username;
   late File _pickedImage;
   bool _loading = true;
-  late List _output;
+  late dynamic _output;
   //late File _pickedImage2;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getModel();
+    getModel().then((value) {
+      setState(() {});
+    });
   }
 
   @override
@@ -43,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Tflite.close();
   }
 
-  void getModel() async {
+  getModel() async {
     var res = await Tflite.loadModel(
       model: 'assets/model_unquant.tflite',
       labels: 'assets/labels.txt',
@@ -56,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
   classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
       path: image.path,
-      numResults: 5,
+      numResults: 2,
       threshold: 0.5,
       imageMean: 127.5,
       imageStd: 127.5,
@@ -65,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _output = output!;
       _loading = false;
     });
+    print(_output);
   }
 
   @override
@@ -103,9 +106,11 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         if (pickedImageFile != null) {
           _pickedImage = File(pickedImageFile.path);
+          classifyImage(_pickedImage);
+          
         }
       });
-      classifyImage(_pickedImage);
+
       if (_pickedImage != null) {
         showModalBottomSheet(
             context: context,
@@ -144,9 +149,12 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         if (pickedImageFile != null) {
           _pickedImage = File(pickedImageFile.path);
+          
+          //classifyImage(_pickedImage);
         }
       });
       classifyImage(_pickedImage);
+      
       if (_pickedImage != null) {
         showModalBottomSheet(
             context: context,
@@ -161,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         _pickedImage != null ? FileImage(_pickedImage) : null,
                   ),
                   Center(
-                    child: Text('The animal is ${_output[0]['label']}'),
+                    child: Text('The animal is ${_output[1]['label']}'),
                   ),
                 ],
               );
