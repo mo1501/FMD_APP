@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var _username;
   late File _pickedImage;
   bool _loading = true;
-  late dynamic _output;
+  List? _output;
   //late File _pickedImage2;
 
   @override
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
   classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
       path: image.path,
-      numResults: 2,
+      numResults: 5,
       threshold: 0.5,
       imageMean: 127.5,
       imageStd: 127.5,
@@ -67,6 +67,25 @@ class _HomeScreenState extends State<HomeScreen> {
       _output = output!;
       _loading = false;
     });
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.grey,
+                radius: 80,
+                backgroundImage:
+                    _pickedImage != null ? FileImage(_pickedImage) : null,
+              ),
+              Center(
+                child: Text('Diagnosis ${_output![0]['label']}'),
+              ),
+            ],
+          );
+        });
+
     print(_output);
   }
 
@@ -107,39 +126,41 @@ class _HomeScreenState extends State<HomeScreen> {
         if (pickedImageFile != null) {
           _pickedImage = File(pickedImageFile.path);
           classifyImage(_pickedImage);
-          
         }
       });
 
-      if (_pickedImage != null) {
-        showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      child: Column(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.grey,
-                            radius: 80,
-                            backgroundImage: _pickedImage != null
-                                ? FileImage(_pickedImage)
-                                : null,
-                          ),
-                          Text('The animal is ${_output[0]['label']}'),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            });
-      } else {
-        _showMyDialog();
-      }
+      // if (_pickedImage != null) {
+      //   showModalBottomSheet(
+      //       context: context,
+      //       builder: (context) {
+      //         return Center(
+      //           child: Column(
+      //             mainAxisSize: MainAxisSize.min,
+      //             children: [
+      //               Container(
+      //                 child: Column(
+      //                   children: [
+      //                     CircleAvatar(
+      //                       backgroundColor: Colors.grey,
+      //                       radius: 80,
+      //                       backgroundImage: _pickedImage != null
+      //                           ? FileImage(_pickedImage)
+      //                           : null,
+      //                     ),
+      //                     SizedBox(
+      //                       height: 20,
+      //                     ),
+      //                     Text('The animal is ${_output![0]['label']}'),
+      //                   ],
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+      //         );
+      //       });
+      // } else {
+      //   _showMyDialog();
+      // }
     }
 
     void _pickImageGallery() async {
@@ -149,33 +170,33 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         if (pickedImageFile != null) {
           _pickedImage = File(pickedImageFile.path);
-          
-          //classifyImage(_pickedImage);
+
+          classifyImage(_pickedImage);
         }
       });
-      classifyImage(_pickedImage);
-      
+      // classifyImage(_pickedImage);
+
       if (_pickedImage != null) {
-        showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    radius: 80,
-                    backgroundImage:
-                        _pickedImage != null ? FileImage(_pickedImage) : null,
-                  ),
-                  Center(
-                    child: Text('The animal is ${_output[1]['label']}'),
-                  ),
-                ],
-              );
-            });
-      } else {
-        _showMyDialog();
+        //   showModalBottomSheet(
+        //       context: context,
+        //       builder: (context) {
+        //         return Column(
+        //           mainAxisSize: MainAxisSize.max,
+        //           children: [
+        //             CircleAvatar(
+        //               backgroundColor: Colors.grey,
+        //               radius: 80,
+        //               backgroundImage:
+        //                   _pickedImage != null ? FileImage(_pickedImage) : null,
+        //             ),
+        //             Center(
+        //               child: Text('The animal is ${_output![0]['label']}'),
+        //             ),
+        //           ],
+        //         );
+        //       });
+        // } else {
+        //   _showMyDialog();
       }
     }
 
