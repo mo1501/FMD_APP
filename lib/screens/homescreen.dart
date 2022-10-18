@@ -73,14 +73,21 @@ class _HomeScreenState extends State<HomeScreen> {
           return Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              SizedBox(
+                height: 40,
+              ),
               CircleAvatar(
                 backgroundColor: Colors.grey,
-                radius: 80,
+                radius: 140,
                 backgroundImage:
                     _pickedImage != null ? FileImage(_pickedImage) : null,
               ),
-              Center(
-                child: Text('Diagnosis ${_output![0]['label']}'),
+              SizedBox(
+                height: 40,
+              ),
+              Text(
+                'Diagnosis : ${_output![0]['label']}',
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
               ),
             ],
           );
