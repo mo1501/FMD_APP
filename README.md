@@ -29,7 +29,7 @@
 
 
 ## Screenshots
-- Registration Page
+### Registration Page
 ![Homescreen screenshot](https://github.com/mo1501/FMD_APP/blob/main/images/Screenshot%202022-11-29%20at%2015.57.45.png?raw=true)
 - Login Page
 ![Login screenshot](https://github.com/mo1501/FMD_APP/blob/main/images/Screenshot%202022-11-29%20at%2015.58.38.png?raw=true)
