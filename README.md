@@ -30,7 +30,7 @@
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
-![Example screenshot](images/Screenshot 2022-11-29 at 15.57.45.png)
+(images/Screenshot 2022-11-29 at 15.57.45.png)
 ![Example screenshot](images/Screenshot 2022-11-29 at 15.58.38.png)
 ![Example screenshot](images/Screenshot 2022-11-29 at 15.59.00.png)
 ![Example screenshot](images/Screenshot 2022-11-29 at 15.59.22.png)
