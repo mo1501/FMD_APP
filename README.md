@@ -31,13 +31,13 @@
 ## Screenshots
 ### Registration Page
 ![Homescreen screenshot](https://github.com/mo1501/FMD_APP/blob/main/images/Screenshot%202022-11-29%20at%2015.57.45.png?raw=true)
-- Login Page
+### Login Page
 ![Login screenshot](https://github.com/mo1501/FMD_APP/blob/main/images/Screenshot%202022-11-29%20at%2015.58.38.png?raw=true)
-- Homescreen Page
+### Homescreen Page
 ![Homescreen screenshot](https://github.com/mo1501/FMD_APP/blob/main/images/Screenshot%202022-11-29%20at%2015.59.00.png?raw=true)
-- Disease Diagnosis Page
+### Disease Diagnosis Page
 ![Disease Diagnosis screenshot](https://github.com/mo1501/FMD_APP/blob/main/images/Screenshot%202022-11-29%20at%2015.59.22.png?raw=true)
-- Google Maps Page
+### Google Maps Page
 ![Google Maps screenshot](https://github.com/mo1501/FMD_APP/blob/main/images/Screenshot%202022-11-29%20at%2015.59.55.png?raw=true)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
