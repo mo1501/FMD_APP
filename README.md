@@ -1,16 +1,40 @@
-# fmd_app
+# Automated Foot and Mouth Disease Detection in Cattle Using Transfer Learning
+## Abstract
+> Foot and mouth disease is one of the most contagious diseases that affect cattle and other animals in the world. If not detected early the effect of this disease is fatal and it being airborne causes it to spread rapidly. Furthermore, farmers in remote areas lack convenient access to veterinary facilities hence in most cases detection of the disease is delayed or missed until its fatal effects kick in. To solve this problem a project that enables farmers to detect the disease from the comfort of their farms is proposed.The project will incorporate the use of computer vision and image processing to obtain images of the animal that is suspected of having the disease. After the image of the animal is obtained and processed, it will be sent to a transfer learning model which will be able to detect the disease and send feedback to the farmer.The project will be developed based on the Incremental model of development which will allow the system to fulfil its goal of reducing human error in detection of the disease and provide real time diagnosis for farmers and veterinarians which will help in curbing the effects of foot and mouth disease.
 
-A new Flutter project.
 
-## Getting Started
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Screenshots](#screenshots)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## General Information
+- The project was undertaken in order to fulfil of my computer science degree. The project involved the use of machine learning to enable Foot and Mouth disease detection in cattle. The user interface of the system was built using Flutter and the machine learning model used was a Teachable Machine model exported as a tflite model into the codebase.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+## Technologies Used
+- Flutter - version 3.0
+- Teachable Machine
+
+
+## Features
+
+- Disease Detection from images
+- Google Maps funtionality
+
+
+
+## Screenshots
+![Example screenshot](./img/screenshot.png)
+![Example screenshot](images/Screenshot 2022-11-29 at 15.57.45.png)
+![Example screenshot](images/Screenshot 2022-11-29 at 15.58.38.png)
+![Example screenshot](images/Screenshot 2022-11-29 at 15.59.00.png)
+![Example screenshot](images/Screenshot 2022-11-29 at 15.59.22.png)
+![Example screenshot](images/Screenshot 2022-11-29 at 15.59.55.png)
+<!-- If you have screenshots you'd like to share, include them here. -->
+
+
